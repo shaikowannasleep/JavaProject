@@ -1,0 +1,219 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+
+
+<?import com.jfoenix.controls.JFXDrawer?>
+<?import com.jfoenix.controls.JFXHamburger?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ListView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.effect.ColorAdjust?>
+<?import javafx.scene.effect.DropShadow?>
+<?import javafx.scene.effect.Glow?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+
+
+<AnchorPane id="AnchorPane" prefHeight="1080.0" prefWidth="1920.0" styleClass="background" stylesheets="@../CSS/app.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controller.MessengerController">
+<children>
+<ImageView fitHeight="1080.0" fitWidth="990.0" layoutX="934.0" opacity="0.3" AnchorPane.topAnchor="0.0">
+<image>
+<Image url="@../ico/doodles.png" />
+</image>
+</ImageView>
+<ImageView fitHeight="1080.0" fitWidth="974.0" opacity="0.3" AnchorPane.topAnchor="0.0">
+<image>
+<Image url="@../ico/doodles.png" />
+</image>
+</ImageView>
+<VBox layoutX="100.0" prefHeight="1080.0" prefWidth="400.0" styleClass="messtab">
+<children>
+<AnchorPane prefHeight="100.0" prefWidth="400.0">
+<children>
+<AnchorPane layoutX="23.0" layoutY="25.0" prefHeight="50.0" prefWidth="350.0" styleClass="txtbox">
+<children>
+<TextField fx:id="filterField" layoutX="60.0" layoutY="5.0" onKeyPressed="#ChatTo" prefHeight="40.0" prefWidth="270.0" promptText="Search" styleClass="txtfield">
+<font>
+<Font name="SansSerif Regular" size="18.0" />
+</font>
+</TextField>
+<ImageView fitHeight="40.0" fitWidth="40.0" layoutX="20.0" layoutY="5.0" opacity="0.7">
+<image>
+<Image url="@../ico/search.png" />
+</image>
+</ImageView>
+</children>
+</AnchorPane>
+</children></AnchorPane>
+<ListView fx:id="listUser" maxHeight="1.7976931348623157E308" onMouseClicked="#listSel" prefHeight="1000.0" prefWidth="396.0">
+<VBox.margin>
+<Insets />
+</VBox.margin>
+</ListView>
+</children></VBox>
+<AnchorPane fx:id="menubar" prefHeight="1080.0" prefWidth="100.0" styleClass="sidepane">
+<effect>
+<DropShadow />
+</effect>
+<children>
+<AnchorPane layoutY="270.0" prefHeight="120.0" prefWidth="100.0" styleClass="tabbutton">
+<children>
+<ImageView fitHeight="60.0" fitWidth="60.0" layoutX="20.0" layoutY="30.0">
+<image>
+<Image url="@../ico/info.png" />
+</image>
+</ImageView>
+</children>
+</AnchorPane>
+<AnchorPane layoutY="420.0" prefHeight="120.0" prefWidth="100.0" styleClass="selectedtabbutton">
+<children>
+<ImageView fitHeight="62.0" fitWidth="70.0" layoutX="12.0" layoutY="30.0">
+<image>
+<Image url="@../ico/chat.png" />
+</image>
+</ImageView>
+</children>
+<effect>
+<Glow />
+</effect>
+</AnchorPane>
+<!--<AnchorPane layoutY="570.0" prefHeight="120.0" prefWidth="100.0" styleClass="tabbutton">
+<children>
+<ImageView fitHeight="60.0" fitWidth="60.0" layoutX="20.0" layoutY="30.0">
+<image>
+<Image url="@../ico/pay.png" />
+</image>
+</ImageView>
+</children>
+</AnchorPane>-->
+<!--<AnchorPane layoutY="720.0" prefHeight="120.0" prefWidth="100.0" styleClass="tabbutton">
+<children>
+<ImageView fitHeight="65.0" fitWidth="65.0" layoutX="20.0" layoutY="28.0">
+<image>
+<Image url="@../ico/data.png" />
+</image>
+</ImageView>
+</children>
+</AnchorPane>-->
+<AnchorPane layoutX="-14.0" layoutY="957.0" prefHeight="120.0" prefWidth="100.0" styleClass="logout" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0">
+<children>
+<ImageView fitHeight="50.0" fitWidth="50.0" layoutX="25.0" layoutY="38.0">
+<image>
+<Image url="@../ico/logout.png" />
+</image>
+</ImageView>
+</children>
+</AnchorPane>
+<JFXHamburger layoutX="11.0" layoutY="29.0" prefHeight="75.0" prefWidth="75.0">
+<effect>
+<ColorAdjust brightness="1.0" contrast="1.0" hue="-1.0" saturation="-1.0" />
+</effect>
+</JFXHamburger>
+</children>
+</AnchorPane>
+<AnchorPane fx:id="menu" maxHeight="1080.0" prefHeight="1080.0" prefWidth="500.0" styleClass="sidepane">
+<children>
+<ImageView fitHeight="119.0" fitWidth="120.0" layoutX="40.0" layoutY="74.0">
+<image>
+<Image url="@../ico/logo.png" />
+</image>
+</ImageView>
+<ImageView fitHeight="65.0" fitWidth="278.0" layoutX="177.0" layoutY="101.0">
+<image>
+<Image url="@../ico/font.png" />
+</image>
+<effect>
+<ColorAdjust brightness="1.0" contrast="1.0" saturation="-1.0" />
+</effect>
+</ImageView>
+<AnchorPane fx:id="btnInfo" layoutY="270.0" onMouseClicked="#Info" pickOnBounds="false" prefHeight="120.0" prefWidth="500.0" styleClass="tabbutton" AnchorPane.rightAnchor="0.0">
+<children>
+<Label layoutX="180.0" layoutY="42.0" text="Info" textFill="WHITE" AnchorPane.leftAnchor="180.0">
+<font>
+<Font name="SansSerif Bold" size="30.0" />
+</font>
+</Label>
+<ImageView fitHeight="60.0" fitWidth="60.0" layoutX="78.0" layoutY="30.0" AnchorPane.leftAnchor="80.0">
+<image>
+<Image url="@../ico/info.png" />
+</image>
+</ImageView>
+</children>
+</AnchorPane>
+<AnchorPane fx:id="btnMess" layoutY="420.0" pickOnBounds="false" prefHeight="120.0" prefWidth="500.0" styleClass="selectedtabbutton">
+<children>
+<Label layoutX="180.0" layoutY="42.0" text="Messenger" textFill="WHITE" AnchorPane.leftAnchor="180.0">
+<font>
+<Font name="SansSerif Bold" size="30.0" />
+</font>
+</Label>
+<ImageView fitHeight="62.0" fitWidth="70.0" layoutX="73.0" layoutY="30.0">
+<image>
+<Image url="@../ico/chat.png" />
+</image>
+<effect>
+<ColorAdjust brightness="0.23" />
+</effect>
+</ImageView>
+</children>
+<effect>
+<Glow />
+</effect>
+</AnchorPane>
+<AnchorPane fx:id="btnSignOut" layoutY="953.0" onMouseClicked="#SignOut" prefHeight="120.0" prefWidth="500.0" styleClass="logout" AnchorPane.bottomAnchor="0.0">
+<children>
+<Label layoutX="189.0" layoutY="43.0" text="Sign out" textFill="WHITE" AnchorPane.leftAnchor="189.0">
+<font>
+<Font name="SansSerif Bold" size="35.0" />
+</font>
+</Label>
+<ImageView fitHeight="50.0" fitWidth="50.0" layoutX="86.0" layoutY="38.0" AnchorPane.leftAnchor="86.0">
+<image>
+<Image url="@../ico/logout.png" />
+</image>
+</ImageView>
+</children>
+</AnchorPane>
+</children>
+<effect>
+<DropShadow />
+</effect>
+</AnchorPane>
+<JFXDrawer fx:id="drawer" defaultDrawerSize="500.0" onMouseEntered="#OpenMenu" onMouseExited="#CloseMenu" prefHeight="1080.0" prefWidth="100.0" AnchorPane.topAnchor="0.0" />
+<BorderPane layoutX="500.0" prefHeight="1080.0" prefWidth="1420.0">
+<top>
+<AnchorPane prefHeight="100.0" prefWidth="200.0" styleClass="messtab" BorderPane.alignment="CENTER" />
+</top>
+<bottom>
+<AnchorPane prefHeight="50.0" prefWidth="1420.0" styleClass="messtab" BorderPane.alignment="CENTER">
+<children>
+<ImageView fitHeight="40.0" fitWidth="40.0" layoutX="14.0" layoutY="20.0">
+<image>
+<Image url="@../ico/attachment.png" />
+</image>
+</ImageView>
+<ImageView fx:id="btnSend" fitHeight="50.0" fitWidth="50.0" layoutX="1353.0" layoutY="13.0" onMouseClicked="#Send" rotate="45.0">
+<image>
+<Image url="@../ico/send.png" />
+</image>
+</ImageView>
+<TextField fx:id="txtMsg" layoutX="63.0" layoutY="10.0" onKeyPressed="#SendMsg" prefHeight="56.0" prefWidth="1280.0" promptText="Write a message..." styleClass="txtfield">
+<font>
+<Font name="SansSerif Regular" size="18.0" />
+</font>
+</TextField>
+</children>
+</AnchorPane>
+</bottom>
+<center>
+<ListView fx:id="chatScr" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="900.0" prefWidth="990.0" styleClass="messback" BorderPane.alignment="CENTER" />
+</center>
+</BorderPane>
+</children>
+</AnchorPane>

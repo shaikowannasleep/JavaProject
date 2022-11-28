@@ -1,0 +1,384 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXDrawer?>
+<?import com.jfoenix.controls.JFXHamburger?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.effect.ColorAdjust?>
+<?import javafx.scene.effect.DropShadow?>
+<?import javafx.scene.effect.Glow?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane id="AnchorPane" prefHeight="1080.0" prefWidth="1920.0" styleClass="background" stylesheets="@../CSS/app.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controller.HRAppController">
+   <children>
+      <ImageView fitHeight="1080.0" fitWidth="990.0" layoutX="934.0" opacity="0.3">
+         <image>
+            <Image url="@../ico/doodles.png" />
+         </image>
+      </ImageView>
+      <ImageView fitHeight="1080.0" fitWidth="974.0" opacity="0.3">
+         <image>
+            <Image url="@../ico/doodles.png" />
+         </image>
+      </ImageView>
+      <AnchorPane layoutX="231.0" layoutY="56.0" prefHeight="50.0" prefWidth="400.0" styleClass="box">
+         <children>
+            <TextField fx:id="filterField" layoutX="60.0" layoutY="5.0" prefHeight="40.0" prefWidth="320.0" promptText="Search" styleClass="txtfield">
+               <font>
+                  <Font name="SansSerif Regular" size="18.0" />
+               </font>
+            </TextField>
+            <ImageView fitHeight="40.0" fitWidth="40.0" layoutX="20.0" layoutY="5.0" opacity="0.7">
+               <image>
+                  <Image url="@../ico/search.png" />
+               </image>
+            </ImageView>
+         </children>
+         <effect>
+            <DropShadow color="#bfacac" />
+         </effect>
+      </AnchorPane>
+      <Button fx:id="btnDelete" alignment="CENTER" layoutX="705.0" layoutY="56.0" onMouseClicked="#DeleteAcc" prefHeight="50.0" prefWidth="208.0" styleClass="button1" text="Delete">
+         <font>
+            <Font name="SansSerif Bold" size="24.0" />
+         </font>
+         <effect>
+            <DropShadow />
+         </effect>
+      </Button>
+      <Button fx:id="btnExport" alignment="CENTER" layoutX="956.0" layoutY="56.0" onMouseClicked="#ExportList" prefHeight="50.0" prefWidth="208.0" styleClass="button1" text="Export">
+         <font>
+            <Font name="SansSerif Bold" size="24.0" />
+         </font>
+         <effect>
+            <DropShadow />
+         </effect>
+      </Button>
+      <TableView fx:id="tableview" layoutX="198.0" layoutY="130.0" prefHeight="880.0" prefWidth="1620.0" styleClass="tableview">
+        <columns>
+          <TableColumn fx:id="columnID" maxWidth="235.33334350585938" minWidth="150.0" prefWidth="235.33334350585938" text="ID" />
+            <TableColumn fx:id="columnFirst" maxWidth="290.0" minWidth="150.0" prefWidth="290.0" text="First Name" />
+          <TableColumn fx:id="columnLast" maxWidth="282.0" minWidth="150.0" prefWidth="274.0" text="Last Name" />
+            <TableColumn fx:id="columnDOB" maxWidth="241.3333740234375" minWidth="74.0" prefWidth="237.3333740234375" text="Date of Birth" />
+            <TableColumn fx:id="columnGender" maxWidth="169.6666259765625" minWidth="111.3333740234375" prefWidth="169.6666259765625" text="Gender" />
+            <TableColumn fx:id="columnJob" maxWidth="235.33349609375" minWidth="150.0" prefWidth="228.3333740234375" text="Job" />
+            <TableColumn fx:id="columnSalary" maxWidth="173.0" minWidth="99.333251953125" prefWidth="137.66650390625" text="Salary" />
+        </columns>
+         <columnResizePolicy>
+            <!--<TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />-->
+         </columnResizePolicy>
+         <effect>
+            <DropShadow color="#5e5454" />
+         </effect>
+      </TableView>
+      <AnchorPane fx:id="menubar" prefHeight="1080.0" prefWidth="100.0" styleClass="sidepane">
+         <effect>
+            <DropShadow />
+         </effect>
+         <children>
+            <AnchorPane layoutY="270.0" prefHeight="120.0" prefWidth="100.0" styleClass="tabbutton">
+               <children>
+                  <ImageView fitHeight="60.0" fitWidth="60.0" layoutX="20.0" layoutY="30.0">
+                     <image>
+                        <Image url="@../ico/info.png" />
+                     </image>
+                  </ImageView>
+               </children>
+            </AnchorPane>
+            <AnchorPane layoutY="420.0" prefHeight="120.0" prefWidth="100.0" styleClass="tabbutton">
+               <children>
+                  <ImageView fitHeight="62.0" fitWidth="70.0" layoutX="12.0" layoutY="30.0">
+                     <image>
+                        <Image url="@../ico/chat.png" />
+                     </image>
+                  </ImageView>
+               </children>
+            </AnchorPane>
+            <AnchorPane layoutY="570.0" prefHeight="120.0" prefWidth="100.0" styleClass="tabbutton">
+               <children>
+                  <ImageView fitHeight="60.0" fitWidth="60.0" layoutX="20.0" layoutY="30.0">
+                     <image>
+                        <Image url="@../ico/pay.png" />
+                     </image>
+                  </ImageView>
+               </children>
+            </AnchorPane>
+<!--            <AnchorPane layoutY="720.0" prefHeight="120.0" prefWidth="100.0" styleClass="selectedtabbutton">
+               <children>
+                  <ImageView fitHeight="65.0" fitWidth="65.0" layoutX="20.0" layoutY="28.0">
+                     <image>
+                        <Image url="@../ico/data.png" />
+                     </image>
+                  </ImageView>
+               </children>
+               <effect>
+                  <Glow />
+               </effect>
+            </AnchorPane>-->
+            <AnchorPane layoutX="-14.0" layoutY="957.0" prefHeight="120.0" prefWidth="100.0" styleClass="logout" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0">
+               <children>
+                  <ImageView fitHeight="50.0" fitWidth="50.0" layoutX="25.0" layoutY="38.0">
+                     <image>
+                        <Image url="@../ico/logout.png" />
+                     </image>
+                  </ImageView>
+               </children>
+            </AnchorPane>
+            <JFXHamburger layoutX="11.0" layoutY="29.0" prefHeight="75.0" prefWidth="75.0">
+               <effect>
+                  <ColorAdjust brightness="1.0" contrast="1.0" hue="-1.0" saturation="-1.0" />
+               </effect>
+            </JFXHamburger>
+         </children>
+      </AnchorPane>
+      <AnchorPane fx:id="menu" prefHeight="1080.0" prefWidth="500.0" styleClass="sidepane">
+         <children>
+            <ImageView fitHeight="119.0" fitWidth="120.0" layoutX="40.0" layoutY="74.0">
+               <image>
+                  <Image url="@../ico/logo.png" />
+               </image>
+            </ImageView>
+            <ImageView fitHeight="65.0" fitWidth="278.0" layoutX="177.0" layoutY="101.0">
+               <image>
+                  <Image url="@../ico/font.png" />
+               </image>
+               <effect>
+                  <ColorAdjust brightness="1.0" contrast="1.0" saturation="-1.0" />
+               </effect>
+            </ImageView>
+            <AnchorPane fx:id="btnInfo" layoutY="270.0" onMouseClicked="#Info" pickOnBounds="false" prefHeight="120.0" prefWidth="500.0" styleClass="tabbutton" AnchorPane.rightAnchor="0.0">
+               <children>
+                  <Label layoutX="180.0" layoutY="42.0" text="Info" textFill="WHITE" AnchorPane.leftAnchor="180.0">
+                     <font>
+                        <Font name="SansSerif Bold" size="30.0" />
+                     </font>
+                  </Label>
+                  <ImageView fitHeight="60.0" fitWidth="60.0" layoutX="78.0" layoutY="30.0" AnchorPane.leftAnchor="80.0">
+                     <image>
+                        <Image url="@../ico/info.png" />
+                     </image>
+                  </ImageView>
+               </children>
+            </AnchorPane>
+            <AnchorPane fx:id="btnMess" layoutY="420.0" onMouseClicked="#Messenger" pickOnBounds="false" prefHeight="120.0" prefWidth="500.0" styleClass="tabbutton">
+               <children>
+                  <Label layoutX="180.0" layoutY="42.0" text="Messenger" textFill="WHITE" AnchorPane.leftAnchor="180.0">
+                     <font>
+                        <Font name="SansSerif Bold" size="30.0" />
+                     </font>
+                  </Label>
+                  <ImageView fitHeight="62.0" fitWidth="70.0" layoutX="73.0" layoutY="30.0">
+                     <image>
+                        <Image url="@../ico/chat.png" />
+                     </image>
+                     <effect>
+                        <ColorAdjust brightness="0.23" />
+                     </effect>
+                  </ImageView>
+               </children>
+            </AnchorPane>
+<!--            <AnchorPane fx:id="btnPay" layoutY="570.0" onMouseClicked="#Payslip" prefHeight="120.0" prefWidth="500.0" styleClass="tabbutton">
+               <children>
+                  <Label layoutX="180.0" layoutY="42.0" text="Payslip" textFill="WHITE" AnchorPane.leftAnchor="180.0">
+                     <font>
+                        <Font name="SansSerif Bold" size="30.0" />
+                     </font>
+                  </Label>
+                  <ImageView fitHeight="60.0" fitWidth="60.0" layoutX="78.0" layoutY="30.0" AnchorPane.leftAnchor="80.0">
+                     <image>
+                        <Image url="@../ico/pay.png" />
+                     </image>
+                  </ImageView>
+               </children>
+            </AnchorPane>-->
+<!--            <AnchorPane layoutY="720.0" prefHeight="120.0" prefWidth="500.0" styleClass="selectedtabbutton">
+               <children>
+                  <Label layoutX="180.0" layoutY="42.0" text="HR Application" textFill="WHITE" AnchorPane.leftAnchor="180.0">
+                     <font>
+                        <Font name="SansSerif Bold" size="30.0" />
+                     </font>
+                  </Label>
+                  <ImageView fitHeight="65.0" fitWidth="65.0" layoutX="76.0" layoutY="28.0" AnchorPane.leftAnchor="72.0">
+                     <image>
+                        <Image url="@../ico/data.png" />
+                     </image>
+                  </ImageView>
+               </children>
+               <effect>
+                  <Glow />
+               </effect>
+            </AnchorPane>-->
+            <AnchorPane fx:id="btnSignOut" onMouseClicked="#SignOut" prefHeight="120.0" prefWidth="500.0" styleClass="logout" AnchorPane.bottomAnchor="0.0">
+               <children>
+                  <Label layoutX="189.0" layoutY="43.0" text="Sign out" textFill="WHITE" AnchorPane.leftAnchor="180.0">
+                     <font>
+                        <Font name="SansSerif Bold" size="35.0" />
+                     </font>
+                  </Label>
+                  <ImageView fitHeight="50.0" fitWidth="50.0" layoutX="86.0" layoutY="38.0" AnchorPane.leftAnchor="80.0">
+                     <image>
+                        <Image url="@../ico/logout.png" />
+                     </image>
+                  </ImageView>
+               </children>
+            </AnchorPane>
+         </children>
+         <effect>
+            <DropShadow />
+         </effect>
+      </AnchorPane>
+      <JFXDrawer fx:id="drawer" defaultDrawerSize="500.0" onMouseEntered="#OpenMenu" onMouseExited="#CloseMenu" prefHeight="1080.0" prefWidth="100.0" />
+      <AnchorPane fx:id="infopane" layoutX="1718.0" layoutY="6.0" prefHeight="1080.0" prefWidth="350.0" styleClass="sidepane" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+         <effect>
+            <DropShadow />
+         </effect>
+         <children>
+            <AnchorPane layoutX="15.0" layoutY="285.0" prefHeight="60.0" prefWidth="320.0" styleClass="box" AnchorPane.leftAnchor="15.0">
+               <children>
+                  <ImageView layoutX="20.0" layoutY="14.0">
+                     <image>
+                        <Image url="@../ico/username.png" />
+                     </image>
+                     <effect>
+                        <ColorAdjust brightness="0.15" contrast="-0.37" hue="0.6" saturation="1.0" />
+                     </effect>
+                  </ImageView>
+                  <TextField fx:id="txtName" editable="false" layoutX="70.0" layoutY="5.0" prefHeight="50.0" prefWidth="230.0" promptText="Name" styleClass="txtfield">
+                     <font>
+                        <Font name="SansSerif Regular" size="18.0" />
+                     </font>
+                  </TextField>
+               </children>
+            </AnchorPane>
+            <AnchorPane layoutX="15.0" layoutY="485.0" prefHeight="60.0" prefWidth="320.0" styleClass="box" AnchorPane.leftAnchor="15.0">
+               <children>
+                  <ImageView layoutX="19.0" layoutY="15.0">
+                     <effect>
+                        <ColorAdjust brightness="0.15" contrast="-0.37" hue="0.6" saturation="1.0" />
+                     </effect>
+                  </ImageView>
+                  <TextField fx:id="txtGender" editable="false" layoutX="65.0" layoutY="4.0" prefHeight="50.0" prefWidth="230.0" promptText="Gender" styleClass="txtfield">
+                     <font>
+                        <Font name="SansSerif Regular" size="18.0" />
+                     </font>
+                  </TextField>
+                  <ImageView fx:id="imgGender" fitHeight="30.0" fitWidth="30.0" layoutX="22.0" layoutY="15.0" pickOnBounds="true" preserveRatio="true">
+                     <effect>
+                        <ColorAdjust brightness="0.15" contrast="-0.37" hue="0.6" saturation="1.0" />
+                     </effect>
+                  </ImageView>
+               </children>
+            </AnchorPane>
+            <AnchorPane fx:id="paneID" layoutX="15.0" layoutY="185.0" prefHeight="60.0" prefWidth="320.0" styleClass="box" AnchorPane.leftAnchor="15.0">
+               <children>
+                  <TextField fx:id="txtID" editable="false" focusTraversable="false" layoutX="65.0" layoutY="4.0" mouseTransparent="true" prefHeight="50.0" prefWidth="230.0" promptText="ID" styleClass="txtfield">
+                     <font>
+                        <Font name="SansSerif Regular" size="18.0" />
+                     </font>
+                  </TextField>
+                  <ImageView fitHeight="45.0" fitWidth="45.0" layoutX="14.0" layoutY="8.0">
+                     <image>
+                        <Image url="@../ico/id.png" />
+                     </image>
+                     <effect>
+                        <ColorAdjust contrast="-0.52" saturation="-0.15" />
+                     </effect>
+                  </ImageView>
+               </children>
+            </AnchorPane>
+            <AnchorPane layoutX="15.0" layoutY="385.0" prefHeight="60.0" prefWidth="320.0" styleClass="box" AnchorPane.leftAnchor="15.0">
+               <children>
+                  <ImageView layoutX="19.0" layoutY="15.0">
+                     <image>
+                        <Image url="@../ico/calendar.png" />
+                     </image>
+                     <effect>
+                        <ColorAdjust brightness="0.15" contrast="-0.37" hue="0.6" saturation="1.0" />
+                     </effect>
+                  </ImageView>
+                  <TextField fx:id="txtDOB" editable="false" layoutX="65.0" layoutY="4.0" prefHeight="52.0" prefWidth="230.0" promptText="Date of Birth" styleClass="txtfield">
+                     <font>
+                        <Font name="SansSerif Regular" size="18.0" />
+                     </font>
+                  </TextField>
+               </children>
+            </AnchorPane>
+            <AnchorPane fx:id="paneJob" layoutX="15.0" layoutY="585.0" prefHeight="60.0" prefWidth="320.0" styleClass="box" AnchorPane.leftAnchor="15.0">
+               <children>
+                  <ImageView layoutX="20.0" layoutY="14.0">
+                     <image>
+                        <Image url="@../ico/job.png" />
+                     </image>
+                     <effect>
+                        <ColorAdjust brightness="0.15" contrast="-0.37" hue="0.6" saturation="1.0" />
+                     </effect>
+                  </ImageView>
+                  <TextField fx:id="txtJob" editable="false" focusTraversable="false" layoutX="65.0" layoutY="4.0" mouseTransparent="true" prefHeight="50.0" prefWidth="230.0" promptText="Job" styleClass="txtfield">
+                     <font>
+                        <Font name="SansSerif Regular" size="18.0" />
+                     </font>
+                  </TextField>
+               </children>
+            </AnchorPane>
+            <AnchorPane layoutX="15.0" layoutY="685.0" prefHeight="60.0" prefWidth="320.0" styleClass="box" AnchorPane.leftAnchor="15.0">
+               <children>
+                  <ImageView layoutX="21.0" layoutY="14.0">
+                     <image>
+                        <Image url="@../ico/email.png" />
+                     </image>
+                     <effect>
+                        <ColorAdjust brightness="0.18" contrast="-0.37" hue="0.73" saturation="1.0" />
+                     </effect>
+                  </ImageView>
+                  <TextField fx:id="txtEmail" editable="false" layoutX="65.0" layoutY="4.0" prefHeight="50.0" prefWidth="230.0" promptText="Email" styleClass="txtfield">
+                     <font>
+                        <Font name="SansSerif Regular" size="18.0" />
+                     </font>
+                  </TextField>
+               </children>
+            </AnchorPane>
+            <AnchorPane layoutX="15.0" layoutY="785.0" prefHeight="60.0" prefWidth="320.0" styleClass="box" AnchorPane.leftAnchor="15.0">
+               <children>
+                  <ImageView layoutX="22.0" layoutY="14.0">
+                     <image>
+                        <Image url="@../ico/phone.png" />
+                     </image>
+                     <effect>
+                        <ColorAdjust brightness="0.15" contrast="-0.37" hue="0.6" saturation="1.0" />
+                     </effect>
+                  </ImageView>
+                  <TextField fx:id="txtPhone" editable="false" layoutX="65.0" layoutY="4.0" prefHeight="50.0" prefWidth="230.0" promptText="Phone Number" styleClass="txtfield">
+                     <font>
+                        <Font name="SansSerif Regular" size="18.0" />
+                     </font>
+                  </TextField>
+               </children>
+            </AnchorPane>
+            <AnchorPane layoutX="15.0" layoutY="885.0" prefHeight="60.0" prefWidth="320.0" styleClass="box" AnchorPane.leftAnchor="15.0">
+               <children>
+                  <ImageView layoutX="21.0" layoutY="14.0">
+                     <image>
+                        <Image url="@../ico/address.png" />
+                     </image>
+                     <effect>
+                        <ColorAdjust brightness="0.15" contrast="-0.37" hue="0.6" saturation="1.0" />
+                     </effect>
+                  </ImageView>
+                  <TextField fx:id="txtAddress" editable="false" layoutX="65.0" layoutY="4.0" prefHeight="50.0" prefWidth="230.0" promptText="Home Address" styleClass="txtfield">
+                     <font>
+                        <Font name="SansSerif Regular" size="18.0" />
+                     </font>
+                  </TextField>
+               </children>
+            </AnchorPane>
+         </children>
+      </AnchorPane>
+      <JFXDrawer fx:id="info" defaultDrawerSize="350.0" direction="RIGHT" layoutX="1923.0" prefHeight="1080.0" prefWidth="100.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
+   </children>
+</AnchorPane>

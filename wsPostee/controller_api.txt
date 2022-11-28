@@ -1,0 +1,420 @@
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
+package com.hrmos.controller;
+
+import AuthClient.AuthData;
+import AuthClient.B64CPR;
+import AuthClient.Base64Obj;
+import AuthClient.ImgPost;
+import AuthClient.RequestBodyData;
+import AuthClient.Response;
+import static AuthClient.Response.stringDone;
+import AuthClient.Session;
+import AuthClient.Signup.PostData;
+import AuthClient.Signup.PostDataWP;
+import AuthClient.Signup.RequestLogin;
+import AuthClient.Signup.ServerPutRegister;
+import MongodbHelper.TransferDataHelper;
+import static MongodbHelper.TransferDataHelper.getDB_DBObject;
+import com.google.gson.Gson;
+import static com.hrmos.controller.apiDemoController.generateNewToken;
+import com.mongodb.DBObject;
+import java.io.IOException;
+import java.net.Authenticator;
+import java.net.InetSocketAddress;
+import java.net.PasswordAuthentication;
+import java.net.Proxy;
+import java.net.UnknownHostException;
+import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Random;
+import javax.servlet.http.HttpServletRequest;
+import okhttp3.MediaType;
+import okhttp3.MultipartBody;
+import okhttp3.OkHttpClient;
+import okhttp3.Request;
+import okhttp3.RequestBody;
+import org.json.JSONObject;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.RestController;
+
+/**
+ *
+ * @author Hoang Quoc Bao
+ */
+@RestController()
+public class TimeKeepingController {
+    public static Random rnd = new Random();
+    @RequestMapping("/api/v1/tk/getListTimeKeeping")
+        @ResponseBody
+	public Object getListTimeKeeping(String authorization) throws UnknownHostException {
+            ArrayList<DBObject> arr = TransferDataHelper.getDB_DBObject("authorization",authorization,"postee_hrm_db","session");
+            if(arr.size()>0)
+            {
+                DBObject obj = arr.get(0);
+                String id = obj.get("id").toString();
+                System.out.println(id);
+                ArrayList<DBObject> arrL = TransferDataHelper.getDB_DBObject("id",id,"postee_hrm_db","timeKeeping");
+                ArrayList<Object> listObj = new ArrayList<Object>();
+                for(int i=0; i<arrL.size();i++)
+                {
+                    String json = (new Gson()).toJson(arrL.get(i));
+                    JSONObject objR = new JSONObject(json);
+                    objR.remove("_id");
+                    listObj.add((new Gson()).fromJson(objR.toString(), Object.class));
+                }
+                if(arrL.size()>0)
+                {
+                    return Response.getDataSuccess(Response.CodeDone.GET_LIST_TIME_KEEPING_SUCCESS,"API_GET_LIST_TIMEKEEPING",listObj);
+                }
+            }
+            return Response.getErrorCode(Response.ErrorCode.UNAUTHORIZATION_TOKEN, "API_GET_LIST_TIMEKEEPING");
+	}
+        public Boolean compare(String base64A, String base64B) throws IOException
+        {
+            try
+            {
+            OkHttpClient client = new OkHttpClient().newBuilder()
+            .build();
+          MediaType mediaType = MediaType.parse("text/plain");
+          RequestBody body = new MultipartBody.Builder().setType(MultipartBody.FORM)
+            .addFormDataPart("__RequestVerificationToken","wqsJqlwCoEc6I-aQEF7dbUJm3MRw3Kbq7tq37t3AMd0l1l4gzoj0HFK2rq8qxBrIMYy7VhWaRdRFznT0YFNjthFcvqc1")
+            .addFormDataPart("LeftImage.Base64Url",base64A)
+            .addFormDataPart("RightImage.Base64Url",base64B)
+            .build();
+          Request request = new Request.Builder()
+            .url("https://azure.microsoft.com/en-us/cognitive-services/demo/faceverificationapi/")
+            .method("POST", body)
+            .addHeader("Cookie", "userInfo=%7b%22guid%22%3a%223383AC3FBD646B630BCFBC00BCA46A46%22%2c%22muid%22%3a%223383AC3FBD646B630BCFBC00BCA46A46%22%2c%22signupDate%22%3a0%2c%22wishlistDate%22%3a0%2c%22checkoutDate%22%3a0%7d; __RequestVerificationToken=KbSpSE0VJ8YOR83hMJcj26qvwaZf3nOKm_dcOkxQxeUrmwZtbJbe5QxlC_MyvzWcrND3mUdO0GfsdPge-ySDIMmKxVI1; at_check=true; MSCC=NR; _mkto_trk=id:157-GQE-382&token:_mch-microsoft.com-1621692840444-44542; ai_user=pbA5RtT60sMHHM2wcAqUWU|2021-05-22T14:14:00.510Z; _cs_c=0; _cs_id=5007e360-5edc-a241-cedd-ec6deede6df8.1621692841.1.1621692841.1621692841.1613561419.1655856841065.None.1; _cs_s=1.1; mbox=session#925797b005d74ec7bcb474d902da08f7#1621694700|PC#925797b005d74ec7bcb474d902da08f7.38_0#1655879540; _CT_RS_=Recording; WRUID=3303382101393462; MicrosoftApplicationsTelemetryDeviceId=32464644-eccb-4a46-8d44-845d806bfd0f; ai_session=bUrqeg9WMiN8M2ufjEivXQ|1621692842122|1621692842307; __CT_Data=gpv=1&ckp=tld&dm=microsoft.com&apv_1067_www32=1&cpv_1067_www32=1&rpv_1067_www32=1; MC1=GUID=916b2db867214e15b563d6b0d5e5dcbc&HASH=916b&LV=202105&V=4&LU=1621692843411; MS0=b2a32ae0a4384b299b615fecc3181789; MSFPC=GUID=916b2db867214e15b563d6b0d5e5dcbc&HASH=916b&LV=202105&V=4&LU=1621692843411; OpenIdConnect.nonce.7Zj%2BmH%2BPCrVbTGBvlybOMTWm79erRWNoTQtZz8ttNFI%3D=NDRCb0xXaGtyTnZyTFN0aWtIZ0cxdXJSdGc1VUs4ZnE2bjVQdjgtNEF0dm55bzZ6SXhpN2ZpcDBEem40em1XWGVRd09iT3NDWmtBYXRSaFMyX1BuVUdQMTllaUVxUTZPbndweDRLQkU2M0czWWNLcU4xTFJKVFdKcFZGYXN6UHZiZHpPbFotWDFpUGU0OTduZ3NjUU1mSHhiSE9yQ0RDU3NMRDR3eExSN1UyQi02c0NOZWNneFF4YVBZSzJEMExDcEhlc3JYa2RLY2p0OWt3ekhxVWNnOG0weFVn; nonceInfo=2021-05-22T14:14:03.5932652Z; LPVID=Y2YTkxYjkyYjJhMjA5MDAw; LPSID-60270350=N_s0gv5XT9u6Zvw7q4cY1A; userInfo=%7b%22guid%22%3a%223383AC3FBD646B630BCFBC00BCA46A46%22%2c%22muid%22%3a%223B617253992B6F433232626C981B6EF7%22%2c%22signupDate%22%3a0%2c%22wishlistDate%22%3a0%2c%22checkoutDate%22%3a0%7d")
+            .build();
+              okhttp3.Response response = client.newCall(request).execute();
+              String res = response.body().string();
+              String value = res.split("Confidence is")[1].split("<")[0];
+              String val = "";
+              for(int i=0;i<value.length()-1;i++)
+              {
+                  val+=value.charAt(i);
+              }
+                System.out.println("Compare: "+val);
+              if(Double.parseDouble(val)>0.75)
+              {
+                return true;
+              }
+              else
+              {
+                  return false;
+              }
+            }
+            catch(Exception ex)
+            {
+                System.out.println(ex.toString());
+                return false;
+            }
+        }
+        @PostMapping(
+    value = "/api/v1/uploadImageFace", consumes = "application/json", produces = "application/json")
+    public Object updateFaceid(@org.springframework.web.bind.annotation.RequestBody Base64Obj base64Object,@RequestParam String authorization) throws UnknownHostException {
+        String imgDb = "imgFace";
+        if(authorization!=null&&!"".equals(authorization)&&!"".equals(TransferDataHelper.getIdByAuthoriztion(authorization)))
+        if(base64Object!=null && base64Object.base64!=null)
+        {
+            String base64 = base64Object.base64;
+            String id = TransferDataHelper.getIdByAuthoriztion(authorization);
+            ImgPost img = new ImgPost();
+            img.base64 = base64;
+            img.id = id;
+            ArrayList<DBObject> dbImage = getDB_DBObject("id",id,"postee_hrm_db",imgDb);
+            if(dbImage.size()>0)
+            {
+                try
+                {
+                    TransferDataHelper.remove_From_DB_Postee("id", id, imgDb);
+                }
+                catch(Exception ex)
+                {
+                    System.out.println(ex.toString());
+                }
+            }
+            TransferDataHelper.putDataTo_PosteeDB(img,imgDb);
+            return Response.getDataSuccess(Response.CodeDone.UPDATE_IMGPROFILE_SUCCESS, "UPDATE_IMGPROFILE", true);
+        }
+        return Response.getErrorCode(Response.ErrorCode.UNAUTHORIZATION_TOKEN, "SEARCH_API");
+    }
+    
+    @PostMapping(
+    value = "/api/v1/checkinFace", consumes = "application/json", produces = "application/json")
+    public Object loginFaceId(@org.springframework.web.bind.annotation.RequestBody Base64Obj base64Object,@RequestParam String authorization) throws UnknownHostException, IOException {
+        String imgDb = "imgFace";
+        if(authorization!=null&&!"".equals(authorization)&&!"".equals(TransferDataHelper.getIdByAuthoriztion(authorization)))
+        if(base64Object!=null && base64Object.base64!=null)
+        {
+            String base64 = base64Object.base64;
+            String id = TransferDataHelper.getIdByAuthoriztion(authorization);
+            ImgPost img = new ImgPost();
+            img.base64 = base64;
+            img.id = id;
+            ArrayList<DBObject> dbImage = getDB_DBObject("id",id,"postee_hrm_db",imgDb);
+            if(dbImage.size()>0)
+            {
+                DBObject obj = dbImage.get(0);
+                String base = obj.get("base64").toString();
+                if(compare(base64,base))
+                {
+                    TK tk = new TK();
+                    tk.id = id;
+                    tk.calculateTotalCheckin();
+                    TransferDataHelper.putDataTo_PosteeDB(tk,"timeKeeping");
+                    return Response.getDataSuccess(Response.CodeDone.CHECKIN_DONE, "CHECKIN", true);
+                }
+            }
+        }
+        return Response.getErrorCode(Response.ErrorCode.CHECKIN_FALSE, "CHECKIN");
+    }
+    @PostMapping(
+    value = "/api/v1/loginFace", consumes = "application/json", produces = "application/json")
+    public Object loginFace(@org.springframework.web.bind.annotation.RequestBody Base64Obj base64Object, @RequestParam String id) throws UnknownHostException, IOException {
+        String imgDb = "imgFace";
+        if(id!=null&&!"".equals(id))
+        if(base64Object!=null && base64Object.base64!=null)
+        {
+            String base64 = base64Object.base64;
+            ArrayList<DBObject> dbImage = getDB_DBObject("id",id,"postee_hrm_db",imgDb);
+            if(dbImage.size()>0)
+            {
+                DBObject obj = dbImage.get(0);
+                String base = obj.get("base64").toString();
+                System.out.println(base64);
+                if(compare(base64,base))
+                {
+                    ArrayList<DBObject> arr = TransferDataHelper.getDB_DBObject("id",id,"postee_hrm_db","userData");
+                    DBObject objR = arr.get(0);
+                    Session session = new Session();
+                    session.authorization = generateNewToken();
+                    System.out.println(session.authorization);
+                    session.timespan = System.currentTimeMillis()/1000L;
+                    session.dbId = obj.get("_id").toString();
+                    session.id = id;
+                    TransferDataHelper.putDataTo_PosteeDB_Session(session);
+                    Response res = new Response();
+                res.code=200;
+                res.message = stringDone(Response.CodeDone.LOGIN_SUCCESS);
+                res.type = "API_LOGIN";
+                res.t = session.timespan;
+                res.data = session.authorization;
+                return res;
+                }
+            }
+        }
+        return Response.getErrorCode(Response.ErrorCode.ACCOUNT_NOT_EXIST, "LoginFace");
+    }
+    
+    @RequestMapping("/api/insurance/getListInsurance")
+        @ResponseBody
+    public Object getListInsurance(@RequestParam String authorization) throws UnknownHostException {
+        ArrayList listInsurance = new ArrayList();
+        if(authorization!=null&&!"".equals(authorization)&&!"".equals(TransferDataHelper.getIdByAuthoriztion(authorization)))
+        {
+            String id = TransferDataHelper.getIdByAuthoriztion(authorization);
+            ArrayList<DBObject> dbInsurance = getDB_DBObject("id",id,"postee_hrm_db","insuranceDB");
+            if(TransferDataHelper.isAdmin(authorization))
+            {
+                return getListByTime(authorization, "0", "9922429433");
+            }
+            for(int i=0; i<dbInsurance.size();i++)
+            {
+                DBObject obj = dbInsurance.get(i);
+                String json = (new Gson()).toJson(obj);
+                JSONObject objR = new JSONObject(json);
+                objR.remove("_id");
+                listInsurance.add((new Gson()).fromJson(objR.toString(), Object.class));
+                System.out.println("TEST SERVER "+i);
+            }
+            return Response.getDataSuccess(Response.CodeDone.GET_DATA_SUCCESS, "GETDATA successful",listInsurance);
+        }
+        return Response.getErrorCode(Response.ErrorCode.UNAUTHORIZATION_TOKEN, "GETDATA");
+    }
+    @RequestMapping("/api/insurance/remove")
+        @ResponseBody
+    public Object remove(@RequestParam String authorization, String idInsurance) throws UnknownHostException {
+        if(authorization!=null&&!"".equals(authorization)&&!"".equals(TransferDataHelper.getIdByAuthoriztion(authorization)))
+        {
+            String id = TransferDataHelper.getIdByAuthoriztion(authorization);
+            ArrayList<DBObject> dbInsurance = getDB_DBObject("idInsurance",idInsurance,"postee_hrm_db","insuranceDB");
+            if(dbInsurance.size()>0)
+            {
+                TransferDataHelper.remove_From_DB_Postee("idInsurance", idInsurance, "insuranceDB");
+                return Response.getDataSuccess(Response.CodeDone.REMOVE_UID_SUCCESS, "Remove successful",true);
+            }
+        }
+        return Response.getErrorCode(Response.ErrorCode.UNAUTHORIZATION_TOKEN, "REMOVE");
+    }
+    @PostMapping(
+        value = "/api/insurance/addInsurance", consumes = "application/json", produces = "application/json")
+        public Object createInsurance(@org.springframework.web.bind.annotation.RequestBody Insurance insurance, @RequestParam String authorization,@RequestParam int year,@RequestParam long price,@RequestParam String typeR) throws UnknownHostException {
+            if(authorization!=null&&!"".equals(authorization)&&!"".equals(TransferDataHelper.getIdByAuthoriztion(authorization)))
+            {
+                String id = TransferDataHelper.getIdByAuthoriztion(authorization);
+                String idInsurance = String.valueOf(TransferDataHelper.generateId());
+                long timestamp = System.currentTimeMillis()/1000L;
+                long timeEnd = timestamp+ 3600*24*365*year;
+                insurance.setTimeStart(timestamp+"");
+                insurance.setTimeEnd(timeEnd+"");
+                insurance.setId(id);
+                insurance.setIdInsurance(idInsurance);
+                if(typeR.equals("Normal"))
+                {
+                    if(price>=100000000)
+                    {
+                        insurance.setPrice(price);
+                        insurance.setPercent(10);
+                        insurance.setDiscount(0);
+                    }
+                    else
+                    {
+                        return false;
+                    }
+                }
+                else
+                {
+                    if(price>=500000000)
+                    {
+                        insurance.setPrice(price);
+                        insurance.setPercent(17);
+                        insurance.setDiscount(1000000);
+                    }
+                    else
+                    {
+                        return false;
+                    }
+                }
+                TransferDataHelper.putDataTo_PosteeDB(insurance,"insuranceDB");
+                return true;
+            }
+            return false;
+        }
+        @RequestMapping("/api/insurance/getListInsuranceByTime")
+                @ResponseBody
+            public Object getListByTime(@RequestParam String authorization, String startTime, String endTime) throws UnknownHostException {
+                String id = TransferDataHelper.getIdByAuthoriztion(authorization);//TransferDataHelper.isAdmin(authorization)
+                if(authorization!=null&&!"".equals(authorization)&&id!="")
+                {
+                    long Start = Long.parseLong(startTime);
+                    long End = Long.parseLong(endTime);
+                    ArrayList listInsurance = new ArrayList();
+                    if(authorization!=null&&!"".equals(authorization)&&!"".equals(TransferDataHelper.getIdByAuthoriztion(authorization)))
+                    {
+                        ArrayList<DBObject> dbInsurance = TransferDataHelper.getListUserAuth2("postee_hrm_db","insuranceDB");
+                        for(int i=0; i<dbInsurance.size();i++)
+                        {
+                            DBObject obj = dbInsurance.get(i);
+                            String json = (new Gson()).toJson(obj);
+                            System.out.println(json);
+                            JSONObject objR = new JSONObject(json);
+                            String time = objR.getString("timeStart");
+                            long value = Long.parseLong(time);
+                            objR.remove("_id");
+                            if(Long.parseLong(startTime)<=value&&value<=Long.parseLong(endTime))
+                            {
+                                if(TransferDataHelper.isAdmin(authorization))
+                                {
+                                    listInsurance.add((new Gson()).fromJson(objR.toString(), Object.class));
+                                }
+                                else
+                                {
+                                    if(objR.getString("id").equals(id))
+                                    {
+                                        listInsurance.add((new Gson()).fromJson(objR.toString(), Object.class));
+                                    }
+                                }
+                            }
+                            System.out.println("TEST SERVER "+i);
+                        }
+                        return Response.getDataSuccess(Response.CodeDone.GET_DATA_SUCCESS, "GETDATA successful",listInsurance);
+                    }
+                }
+                return Response.getErrorCode(Response.ErrorCode.PERMISSION_ADMIN, "SEARCH_API");
+            }
+            @PostMapping(
+        value = "/api/insurance/changeInfo",consumes = "application/json", produces = "application/json")
+        public Object changeInfoR(@RequestParam String authorization, @RequestParam String name,@RequestParam String id) throws UnknownHostException
+        {
+            if(!name.equals(""))
+            {
+                String idA = TransferDataHelper.getIdByAuthoriztion(authorization);
+                if(!idA.equals(""))
+                {
+                    
+                    TransferDataHelper.update_name_insurance(id, name);
+                    System.out.println("Update success");
+                    return Response.getDataSuccess(Response.CodeDone.UPDATE_INFO_SUCCESS, "UPDATE_INFO_API",true);
+                }
+                else
+                {
+                    return Response.getErrorCode(Response.ErrorCode.UNAUTHORIZATION_TOKEN, "UPDATE_INFO_API");
+                }
+            }
+            else
+            {
+                
+            }
+            return Response.getDataSuccess(Response.CodeDone.UPDATE_INFO_SUCCESS, "UPDATE_INFO_API",true);
+        }
+        
+        public String a(String url) throws IOException
+        {
+            final int proxyPort = 4003; //your proxy port
+            final String proxyHost = "192.168.1.22";
+            final String username = "";
+            final String password = "";
+
+            InetSocketAddress proxyAddr = new InetSocketAddress(proxyHost, proxyPort);
+            Proxy proxy = new Proxy(Proxy.Type.HTTP, proxyAddr);
+
+            Authenticator.setDefault(new Authenticator() {
+              @Override
+              protected PasswordAuthentication getPasswordAuthentication() {
+                if (getRequestingHost().equalsIgnoreCase(proxyHost)) {
+                  if (proxyPort == getRequestingPort()) {
+                    return new PasswordAuthentication(username, password.toCharArray());
+                  }
+                }
+                return null;
+              }
+            });
+
+
+            OkHttpClient client = (new OkHttpClient.Builder())
+                    .proxy(proxy)
+                .build();
+            okhttp3.Request request = new Request.Builder()
+                .url(url)
+                .build();
+            okhttp3.Response response = client.newCall(request).execute();
+            System.out.println(response);
+            return response.body().string();
+        }
+        @RequestMapping("/api/getWeb")
+        @ResponseBody
+	public Object getProxy(String url, String server) throws UnknownHostException, IOException {
+            if(server.equals("0"))
+                return a(url); 
+            else
+            {
+                OkHttpClient client = (new OkHttpClient.Builder())
+                .build();
+            okhttp3.Request request = new Request.Builder()
+                .url(url)
+                .build();
+            okhttp3.Response response = client.newCall(request).execute();
+            System.out.println(response);
+            return response.body().string();
+            }
+	}
+}
+

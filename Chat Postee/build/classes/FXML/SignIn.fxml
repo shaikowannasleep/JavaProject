@@ -1,0 +1,136 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXDrawer?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.PasswordField?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.effect.ColorAdjust?>
+<?import javafx.scene.effect.DropShadow?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.StackPane?>
+<?import javafx.scene.shape.Line?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane id="AnchorPane" fx:id="rootPane" maxHeight="1080.0" maxWidth="1920.0" prefHeight="1080.0" prefWidth="1920.0" styleClass="background" stylesheets="@../CSS/app.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controller.SignInController">
+    <children>
+      <ImageView fitHeight="1080.0" fitWidth="974.0" opacity="0.3">
+         <image>
+            <Image url="@../ico/doodles.png" />
+         </image>
+      </ImageView>
+      <ImageView fitHeight="1080.0" fitWidth="990.0" layoutX="944.0" layoutY="10.0" opacity="0.3" AnchorPane.topAnchor="0.0">
+         <image>
+            <Image url="@../ico/doodles.png" />
+         </image>
+      </ImageView>
+      <AnchorPane layoutX="-4.0" prefHeight="1080.0" prefWidth="754.0" styleClass="sidepane">
+         <children>
+            <ImageView fitHeight="484.0" fitWidth="624.0" layoutX="65.0" layoutY="366.0" nodeOrientation="INHERIT">
+               <image>
+                  <Image url="@../ico/art.png" />
+               </image>
+            </ImageView>
+            <ImageView fitHeight="89.0" fitWidth="380.0" layoutX="65.0" layoutY="168.0">
+               <image>
+                  <Image url="@../ico/font.png" />
+               </image>
+               <effect>
+                  <ColorAdjust brightness="1.0" contrast="1.0" saturation="-1.0" />
+               </effect>
+            </ImageView>
+         </children>
+         <effect>
+            <DropShadow />
+         </effect>
+      </AnchorPane>
+      <AnchorPane layoutX="1131.0" layoutY="211.0" prefHeight="650.0" prefWidth="500.0" styleClass="box" stylesheets="@../CSS/app.css">
+         <children>
+            <Button fx:id="btnSignIn" alignment="CENTER" layoutX="71.0" layoutY="396.0" onAction="#SignIn" prefHeight="50.0" prefWidth="288.0" styleClass="button1" text="Sign In">
+               <font>
+                  <Font name="SansSerif Bold" size="22.0" />
+               </font>
+            </Button>
+            <Line endX="250.0" layoutX="172.0" layoutY="508.0" startX="-100.0" stroke="#ddc9c9" strokeWidth="2.0" />
+            <Button fx:id="btnSignUp" alignment="CENTER" layoutX="119.0" layoutY="538.0" onAction="#SignUp" prefHeight="50.0" prefWidth="258.0" styleClass="button2" text="Create new account">
+               <font>
+                  <Font name="SansSerif Bold" size="20.0" />
+               </font>
+            </Button>
+            <AnchorPane fx:id="userpane" layoutX="49.0" layoutY="207.0" prefHeight="60.0" prefWidth="400.0" styleClass="txtbox">
+               <children>
+                  <ImageView layoutX="20.0" layoutY="14.0">
+                     <image>
+                        <Image url="@../ico/username.png" />
+                     </image>
+                     <effect>
+                        <ColorAdjust brightness="0.15" contrast="-0.37" hue="0.6" saturation="1.0" />
+                     </effect>
+                  </ImageView>
+                  <TextField fx:id="txtUser" layoutX="70.0" layoutY="5.0" onKeyPressed="#Enter" prefHeight="50.0" prefWidth="300.0" promptText="Username" styleClass="txtfield">
+                     <font>
+                        <Font name="SansSerif Regular" size="18.0" />
+                     </font>
+                  </TextField>
+               </children>
+            </AnchorPane>
+            <AnchorPane fx:id="passpane" layoutX="49.0" layoutY="298.0" prefHeight="60.0" prefWidth="400.0" styleClass="txtbox">
+               <children>
+                  <ImageView layoutX="20.0" layoutY="14.0">
+                     <image>
+                        <Image url="@../ico/password.png" />
+                     </image>
+                     <effect>
+                        <ColorAdjust brightness="0.15" contrast="-0.37" hue="0.6" saturation="1.0" />
+                     </effect>
+                  </ImageView>
+                  <PasswordField fx:id="txtPass" layoutX="70.0" layoutY="5.0" onKeyPressed="#Enter" prefHeight="50.0" prefWidth="300.0" promptText="Password" styleClass="txtfield" stylesheets="@../CSS/app.css">
+                     <font>
+                        <Font name="SansSerif Regular" size="18.0" />
+                     </font>
+                  </PasswordField>
+               </children>
+            </AnchorPane>
+            <Label fx:id="btnForgot" layoutX="169.0" layoutY="469.0" onMouseClicked="#ForgotPass" styleClass="lbl" text="Forgotten Password ?" textFill="#6392b0" underline="true">
+               <font>
+                  <Font name="SansSerif Regular" size="17.0" />
+               </font>
+            </Label>
+            <ImageView fitHeight="119.0" fitWidth="120.0" layoutX="190.0" layoutY="48.0">
+               <image>
+                  <Image url="@../ico/logo.png" />
+               </image>
+            </ImageView>
+            <AnchorPane fx:id="btnFaceId" accessibleRole="BUTTON" layoutX="373.0" layoutY="396.0" onMouseClicked="#FaceID" prefHeight="50.0" prefWidth="50.0" styleClass="button3">
+               <children>
+                  <ImageView fitHeight="43.0" fitWidth="43.0" layoutX="3.0" layoutY="4.0">
+                     <image>
+                        <Image url="@../ico/faceid.png" />
+                     </image>
+                     <effect>
+                        <ColorAdjust brightness="1.0" hue="-1.0" saturation="-1.0" />
+                     </effect>
+                  </ImageView>
+               </children>
+            </AnchorPane>
+            <Label fx:id="error" layoutX="194.0" layoutY="189.0" prefHeight="21.0" prefWidth="235.0" textFill="RED">
+               <font>
+                  <Font name="SansSerif Regular" size="15.0" />
+               </font>
+            </Label>
+         </children>
+         <effect>
+            <DropShadow blurType="GAUSSIAN" color="#aba6a6" height="20.0" offsetX="3.0" offsetY="2.0" radius="9.5" width="20.0" />
+         </effect>
+      </AnchorPane>
+      <StackPane fx:id="paneFaceId" layoutX="527.0" layoutY="204.0" styleClass="box" />
+      <JFXDrawer fx:id="drawer" defaultDrawerSize="690.0" direction="TOP" layoutX="527.0" layoutY="204.0" />
+      <Button fx:id="closeCam" layoutX="1402.0" layoutY="190.0" maxHeight="50.0" maxWidth="50.0" mnemonicParsing="false" onMouseClicked="#closeCam" prefHeight="50.0" prefWidth="50.0" styleClass="button2" text="X">
+         <font>
+            <Font name="Arial Bold" size="22.0" />
+         </font>
+      </Button>
+    </children>
+</AnchorPane>

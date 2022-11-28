@@ -1,0 +1,280 @@
+/*
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+*/
+/* 
+    Created on : 02/03/2021, 9:10:35 AM
+    Author     : ADMIN
+*/
+
+.background {
+    -fx-background-color: rgb(185,228,241);
+}
+
+.faceid {
+    -fx-background-color: rgb(35,108,129);
+}
+
+.button1 {
+    -fx-background-color: rgb(35,108,129);
+    -fx-text-fill: whitesmoke;
+    -fx-background-radius: 800;
+    -fx-opacity: 1;
+}
+
+.button1:hover {
+    -fx-background-color: rgb(35,108,129);
+    -fx-text-fill: whitesmoke;
+    -fx-background-radius: 800;
+    -fx-opacity: 0.7;
+}
+
+.button1:pressed {
+    -fx-background-color: rgb(35,108,129);
+    -fx-text-fill: whitesmoke;
+    -fx-background-radius: 800;
+    -fx-opacity: 0.8;
+    /*-fx-rotate: 2;*/
+}
+
+.button2 {
+    -fx-background-color: rgb(117,205,76);
+    -fx-text-fill: whitesmoke;
+    -fx-background-radius: 800;
+    -fx-opacity: 1;
+}
+
+.button2:hover {
+    -fx-background-color: rgb(117,205,76);
+    -fx-text-fill: whitesmoke;
+    -fx-background-radius: 800;
+    -fx-opacity: 0.7;
+}
+
+.button2:pressed {
+    -fx-background-color: rgb(117,205,76);
+    -fx-text-fill: whitesmoke;
+    -fx-background-radius: 800;
+    -fx-opacity: 0.8;
+    /*-fx-rotate: 1;*/
+}
+
+.button3    {
+    -fx-background-color: rgb(35,108,129);
+    -fx-background-radius: 10;
+    -fx-opacity: 1;
+}
+
+.button3:hover    {
+    -fx-background-color: rgb(35,108,129);
+    -fx-background-radius: 10;
+    -fx-opacity: 0.7;
+}
+
+.button3:pressed    {
+    -fx-background-color: rgb(35,108,129);
+    -fx-background-radius: 10;
+    -fx-opacity: 0.8;
+    /*-fx-rotate: 1;*/
+}
+
+.lbl    {
+    -fx-text-fill: #6392b0;
+    -fx-opacity: 1;
+}
+
+.lbl:hover    {
+    -fx-text-fill: #6392b0;
+    -fx-opacity: 0.7;
+}
+
+.lbl:pressed    {
+    -fx-text-fill: #6392b0;
+    -fx-opacity: 0.8;
+}
+
+.sidepane   {
+    -fx-background-color: rgb(99,146,176);
+}
+
+.tabbutton  {
+    -fx-background-radius: 10;
+    -fx-background-color: rgb(99,146,176);
+}
+
+.tabbutton:hover  {
+    -fx-background-radius: 10;
+    -fx-background-color: rgb(99,164,176);
+}
+
+.selectedtabbutton  {
+    -fx-background-radius: 10;
+    -fx-background-color: rgb(99,146,166);
+}
+
+.txtbox {
+    -fx-background-radius: 800;
+    -fx-border-color: lightgrey;
+    -fx-border-width: 2px;
+    -fx-border-radius: 800;
+}
+
+.txtfield   {
+    -fx-background-color: white;
+}
+
+.box    {
+    -fx-background-color: white;
+    -fx-background-radius: 40;
+}
+
+.date-picker    {
+    -fx-font: 18px "SansSerif";
+    -fx-background-color: white;
+}
+
+.popup  {
+    -fx-background-color: white;
+    -fx-border-color: lightgrey;
+    -fx-border-width: 2px;
+    -fx-background-radius: 40;
+    -fx-border-radius: 40;
+}
+
+.comboBox{
+    -fx-background-color: white;
+    -fx-border-color: lightgrey;
+    -fx-border-width: 2px;
+    -fx-border-radius: 40;
+}
+.comboBox:label  {
+    -fx-font-size: 18px;
+    -fx-text-fill: #a8a1a1;
+}
+
+.warning{
+    -fx-background-color: rgb(251,253,176);
+    -fx-border-color: lightgrey;
+    -fx-border-width: 2px;
+}
+
+.logout {
+    -fx-background-color: rgb(35,108,129);
+    -fx-text-fill: whitesmoke;
+    -fx-opacity: 1;
+}
+
+.logout:hover {
+    -fx-background-color: rgb(35,108,129);
+    -fx-text-fill: whitesmoke;
+    -fx-opacity: 0.7;
+}
+
+.logout:pressed {
+    -fx-background-color: rgb(35,108,129);
+    -fx-text-fill: whitesmoke;
+    -fx-opacity: 0.8;
+}
+
+.tableview  {
+    -fx-background-color: white;
+}
+
+.tableview .column-header-background .filler {
+    -fx-background-color: rgb(35,108,129);
+}
+
+.tableview .column-header-background{
+    -fx-background-color: rgb(35,108,129);
+    -fx-background-insets: 0 0 0 0;
+    -fx-padding: 0 0 0 0;
+}
+
+.tableview .column-header {
+    -fx-background-color: rgb(35,108,129);
+    -fx-border-color: whitesmoke;
+    -fx-border-width: 0.25px;
+}
+
+.tableview .column-header .label {
+    -fx-text-fill: whitesmoke;
+    -fx-font-family: sans-serif bold;
+    -fx-font-size: 22px; 
+}
+
+.tableview .table-cell{
+    -fx-font-family: sans-serif;
+    -fx-font-size: 18px;
+    -fx-padding: 2 0 2 10px;
+}
+
+.table-row-cell:hover {
+    -fx-background-color: #3799b5;
+    -fx-opacity: 0.9;
+    -fx-text-background-color: rgb(185,228,241);
+}
+.table-row-cell:odd{
+    -fx-background-color: #93f9b911;
+    -fx-background-insets: 0, 0 0 1 0;
+    -fx-padding: 0.0em;
+}
+.table-row-cell:even{
+    -fx-background-color: #1dbbdd11;
+    -fx-background-insets: 0, 0 0 1 0;
+    -fx-padding: 0.0em;
+}
+.table-row-cell:selected {
+    -fx-background-color: #3799b5;
+    -fx-background-insets: 0;
+    -fx-background-radius: 4;
+}
+
+.table-view .scroll-bar * {
+    -fx-min-width: 10;
+    -fx-pref-width: 10;
+    -fx-max-width: 10;
+
+    -fx-min-height: 0;
+    -fx-pref-height: 0;
+    -fx-max-height: 0;
+}
+
+.messtab {
+    -fx-background-color: white;
+    -fx-border-color: lightgrey;
+    -fx-border-width: 2px;
+}
+
+.messback{
+    -fx-background-color: transparent;
+}
+
+.list-view .list-cell:even {
+    -fx-background-color: transparent;
+    -fx-alignment: CENTER_RIGHT;
+    -fx-font-size: 18px;
+    -fx-text-fill: black;
+}
+.list-view .list-cell:odd {
+    -fx-background-color: transparent;
+    -fx-alignment: CENTER_RIGHT;
+    -fx-font-size: 18px;
+    -fx-text-fill: black;
+}
+
+.messagebox .input-line{
+	-fx-pref-height: 0px;
+}
+.messagebox .input-focused-line{
+	-fx-pref-height: 0px;
+}
+
+.incoming-bubble{
+    -fx-background-color: #4F46A1;
+    -fx-background-radius: 0 10 10 10;
+ }
+ .outcoming-bubble{
+    -fx-background-color: FC9C47;
+    -fx-background-radius: 10 0 10 10;
+ }
