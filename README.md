@@ -1,5 +1,5 @@
 # JavaProject
-[REUP] A JavaProject in 2021 with team
+[REUP] A JavaProject in 2021 with team : Ứng dụng chat trong công ty 
 - Để build code: Mở project trong netbeans 8.2 và build project với main class
 là HRMPostee.java ở package hrm.postee
 - Để run project: run class HRMPostee.java (đã bao gồm main class).
